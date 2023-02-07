@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"
+     th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+
+    <div th:replace="fragments/categoryUpload.html :: categoryUpload"></div>
+
+
+    <div class="container my-5 p-5 bg-light">
+        <form action="#" th:action="@{/backend/read-excel-product}" method="post"
+        enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="product" class="form-label">Product Upload</label>
+                <input type="file" id="product" name="file1"
+                    class="form-control">
+            </div>
+            <input type="submit" value="Upload Product"
+                   class="btn btn-info btn-lg">
+
+        </form>
+    </div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
