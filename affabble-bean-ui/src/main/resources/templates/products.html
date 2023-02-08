@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html th:replace="layouts/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 text-center mt-3 p-5">
+                <h3 class="bg-button text-white"> <a style="color: white!important;text-decoration:none!important;" th:href="@{'/webui/products?category=dairy'}">diary</a></h3>
+                <h3 class="bg-button text-white"> <a style="color: white!important;text-decoration:none!important;" th:href="@{'/webui/products?category=meats'}">meats</a></h3>
+                <h3 class="bg-button text-white"> <a style="color: white!important;text-decoration:none!important;" th:href="@{'/webui/products?category=bakery'}">bakery</a></h3>
+                <h3 class="bg-button text-white"> <a style="color: white!important;text-decoration:none!important;" th:href="@{'/webui/products?category=fruit_veg'}">fruit &amp; veg</a></h3>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pro : ${products}">
+                        <td><img src="../static/bootstrap/images/products/"
+                                th:src="@{'/bootstrap/images/products/'+${pro.name()} +'.png'}" alt=""></td>
+                        <td th:text="${pro.name()}"></td>
+                        <td th:text="${'$'+ pro.price()}"></td>
+                        <td><a href="#" class="btn btn-info">Purchase</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

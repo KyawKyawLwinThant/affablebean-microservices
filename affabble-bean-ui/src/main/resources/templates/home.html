@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html th:replace="layouts/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Welcome to the online home of the Affable Bean Green Grocer.</h3>
+                <br>
+                <p class="lead">Enjoy browsing and learning more about our
+                    unique home delivery service bringing you fresh
+                    organic produce,dairy,meats,breads and other
+                    delicious and healthy items to you doorstep.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <a th:href="@{'/webui/products?category=dairy'}"> <img src="../static/bootstrap/images/categories/dairy.jpg"
+                                         th:src="@{/bootstrap/images/categories/dairy.jpg}" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-md-6">
+                        <a th:href="@{'/webui/products?category=meats'}"><img src="../static/bootstrap/images/categories/meats.jpg"
+                                        th:src="@{/bootstrap/images/categories/meats.jpg}" class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <a th:href="@{'/webui/products?category=bakery'}"><img src="../static/bootstrap/images/categories/bakery.jpg"
+                                        th:src="@{/bootstrap/images/categories/bakery.jpg}" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-md-6">
+                        <a th:href="@{'/webui/products?category=fruit_veg'}"><img src="../static/bootstrap/images/categories/fruitveg.jpg"
+                                        th:src="@{/bootstrap/images/categories/fruitveg.jpg}" class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: affable-bean-ui
+server:
+  port: 8090
