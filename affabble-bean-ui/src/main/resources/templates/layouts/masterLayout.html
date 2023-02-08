@@ -2,7 +2,7 @@
 <html lang="en" th:fragment="layout(main)" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Affable Bean</title>
   <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css"
     th:href="@{/bootstrap/css/bootstrap.min.css}">
   <link rel="stylesheet" href="../../static/bootstrap/css/app.css"
@@ -13,7 +13,19 @@
 
 <section>
     <header>
+        <div class="row">
+            <div class="offset-md-6 col-md-6" th:if="${ cartSize > 0}">
+               <h3><a style="text-decoration: none!important;" th:href="@{/webui/cart-view}"> <img src="../../static/bootstrap/images/cart.gif"
+                     th:src="@{/bootstrap/images/cart.gif}"
+                     width="25" height="25" alt="" class="my-3">
+                &nbsp; <span
+                    class="badge badge-info"
+                    th:text="${cartSize}"></span> </a></h3>
+
+            </div>
+        </div>
         <div class="container">
+
             <img id="logo" src="../../static/bootstrap/images/logo.png"
                  th:src="@{/bootstrap/images/logo.png}" alt="">
             <img id="logoText" src="../../static/bootstrap/images/logoText.png"

@@ -2,7 +2,9 @@ package com.example.affabblebeanui.service;
 
 import com.example.affabblebeanui.dto.Product;
 import com.example.affabblebeanui.dto.Products;
+import com.example.affabblebeanui.exception.ProductNotFoundException;
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -28,9 +30,18 @@ public class ProductClientService {
         else
             throw new RuntimeException("Error!");
     }
+    public Product findProductById(int id){
+        return products
+                .stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElseThrow(()->new
+                        ProductNotFoundException(HttpStatus.NOT_FOUND
+                        ,id +" NotFound!"));
+    }
     public List<Product> findProductByCategoryName(String categoryName){
         return products.stream()
-                .filter( p -> p.categoryName().equals(categoryName))
+                .filter( p -> p.getCategoryName().equals(categoryName))
                 .collect(Collectors.toList());
     }
 

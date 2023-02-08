@@ -4,6 +4,11 @@
 <body>
 <main role="main">
     <div class="container mt-5">
+        <row>
+            <div class="offset-md-10 col-md-2">
+                <h4 class="text-muted" th:text="${'Total:$'+ #numbers.formatDecimal(total,1,2)}"></h4>
+            </div>
+        </row>
         <div class="row">
             <div class="col-md-6 text-center mt-3 p-5">
                 <h3 class="bg-button text-white"> <a style="color: white!important;text-decoration:none!important;" th:href="@{'/webui/products?category=dairy'}">diary</a></h3>
@@ -24,10 +29,11 @@
                     <tbody>
                     <tr th:each="pro : ${products}">
                         <td><img src="../static/bootstrap/images/products/"
-                                th:src="@{'/bootstrap/images/products/'+${pro.name()} +'.png'}" alt=""></td>
-                        <td th:text="${pro.name()}"></td>
-                        <td th:text="${'$'+ pro.price()}"></td>
-                        <td><a href="#" class="btn btn-info">Purchase</a></td>
+                                th:src="@{'/bootstrap/images/products/'+${pro.name} +'.png'}" alt=""></td>
+                        <td th:text="${pro.name}"></td>
+                        <td th:text="${'$'+ pro.price}"></td>
+                        <td><a th:href="@{'/webui/product/add?id='+${pro.id}}"
+                               class="btn btn-info">Purchase</a></td>
                     </tr>
                     </tbody>
                 </table>
