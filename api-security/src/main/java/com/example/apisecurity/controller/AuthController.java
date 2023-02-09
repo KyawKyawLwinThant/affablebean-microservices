@@ -4,6 +4,7 @@ import com.example.apisecurity.data.User;
 import com.example.apisecurity.service.UserService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
@@ -79,6 +80,20 @@ public class AuthController {
                 user.getLastName(),
                 user.getEmail()
         );
+    }
+
+    record UserResponse(Long id,
+                        @JsonProperty("first_name") String firstName,
+                        @JsonProperty("last_name") String lastName,
+                        String email){}
+
+   @GetMapping("/user")
+    public UserResponse user(HttpServletRequest request){
+        var user=(User) request.getAttribute("user");
+        return new UserResponse(user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail());
     }
 
 

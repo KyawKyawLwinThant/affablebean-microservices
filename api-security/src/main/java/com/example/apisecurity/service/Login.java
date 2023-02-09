@@ -9,7 +9,7 @@ public class Login {
     @Getter
     private final Jwt refreshToken;
 
-    private static final Long ACCESS_VALIDITY=1L;
+    private static final Long ACCESS_VALIDITY=5L;
     private static final Long REFRESH_VALIDITY=1440L;
 
 

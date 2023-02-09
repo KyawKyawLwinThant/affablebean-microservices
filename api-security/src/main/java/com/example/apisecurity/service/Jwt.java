@@ -1,5 +1,6 @@
 package com.example.apisecurity.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Getter;
@@ -43,6 +44,28 @@ public class Jwt {
                 LocalDateTime.ofInstant(expiration,ZoneId.systemDefault())
         );
 
+    }
+    public static Jwt from(String token,String secretKey){
+        var claims=(Claims)Jwts.parserBuilder()
+                .setSigningKey(
+                        Base64.getEncoder()
+                                .encodeToString(secretKey
+                                        .getBytes(StandardCharsets.UTF_8))
+                )
+                .build()
+                .parse(token)
+                .getBody();
+        var userId=claims.get("user_id",Long.class);
+        var issuedAt=claims.getIssuedAt();
+        var expiration=claims.getExpiration();
+        return new Jwt(
+                token,
+                userId,
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(issuedAt.getTime())
+                        ,ZoneId.systemDefault()),
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(expiration.getTime()),
+                        ZoneId.systemDefault())
+        );
     }
 
     private Jwt(String token, Long userId, LocalDateTime issuedAt, LocalDateTime expiredAt) {
