@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/affablebean-backend/pom.xml" />
         <option value="$PROJECT_DIR$/affabble-bean-ui/pom.xml" />
+        <option value="$PROJECT_DIR$/api-security/pom.xml" />
       </list>
     </option>
   </component>

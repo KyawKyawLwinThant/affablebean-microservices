@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="affablebean-backend" />
         <module name="affabble-bean-ui" />
+        <module name="api-security" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="affabble-bean-ui" options="" />
       <module name="affablebean-backend" options="" />
+      <module name="api-security" options="" />
     </option>
   </component>
 </project>

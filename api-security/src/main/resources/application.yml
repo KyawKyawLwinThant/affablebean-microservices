@@ -1,0 +1,20 @@
+server:
+  port: 8070
+  error:
+    include-message: always
+spring:
+  datasource:
+    url: jdbc:h2:file:./auth_db;AUTO_SERVER=TRUE;NON_KEYWORDS=USER;
+    username: auth
+    password: auth
+    driver-class-name: org.h2.Driver
+  sql:
+    init:
+      platform: h2
+      mode: always
+secret:
+  access-token:
+    key: eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY3NTkyNzQ1NywiaWF0IjoxNjc1OTI3NDU3fQ.afeVX0hPe6qTM8Us-eXQ5PBHzkTleEkh0KSQsTPtYX8
+  refresh-token:
+    key: eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY3NTkyNzQ1NywiaWF0IjoxNjc1OTI3NDU3fQ.afeVX0hPe6qTM8Us-eXQ5PBHzkTleEkh0KSQsTPtYX8
+
