@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -80,6 +81,14 @@ public class AuthController {
                 user.getLastName(),
                 user.getEmail()
         );
+    }
+    record ForgetRequest(String email){}
+    record ForgetResponse(String message){}
+    @PostMapping("/forgot")
+    public ForgetResponse forget(@RequestBody ForgetRequest forgetRequest,HttpServletRequest request){
+        var originUrl=request.getHeader("Origin");
+        userService.forgot(forgetRequest.email,originUrl);
+        return new ForgetResponse("successfully forgot password.");
     }
 
     record UserResponse(Long id,

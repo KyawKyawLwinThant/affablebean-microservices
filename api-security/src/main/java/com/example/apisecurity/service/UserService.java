@@ -1,5 +1,6 @@
 package com.example.apisecurity.service;
 
+import com.example.apisecurity.data.PasswordRecovery;
 import com.example.apisecurity.data.Token;
 import com.example.apisecurity.data.User;
 import com.example.apisecurity.data.UserDao;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -26,6 +28,15 @@ public class UserService {
     private String accessSecret;
     @Value("${secret.refresh-token.key}")
     private String refreshSecret;
+
+    public void forgot(String email,String originUrl){
+        var token= UUID.randomUUID().toString().replace("-","");
+        var user=userDao.findUserByEmail(email)
+                .orElseThrow(UserNotFoundException::new);
+        user.addPasswordRecovery(new PasswordRecovery(token));
+        userDao.save(user);
+
+    }
 
 
     public Boolean logout(String refreshToken){

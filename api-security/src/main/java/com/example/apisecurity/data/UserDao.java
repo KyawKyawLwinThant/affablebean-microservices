@@ -19,6 +19,11 @@ where u.id=:id and t.refresh_token=:refreshToken and t.expired_at >=:expiredAt
             @Param("refreshToken") String refreshToken,
             @Param("expiredAt") LocalDateTime expiredAt
     );
+    @Query("""
+    select u.* from user u inner join password_recovery pr on u.id=pr.user
+    where pr.token =:token
+""")
+    Optional<User> findUserByPasswordRecoveryToken(@Param("token") String token);
 
     Optional<User> findUserByEmail(String email);
 }
