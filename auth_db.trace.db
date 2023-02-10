@@ -19,3 +19,6 @@ java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supporte
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-02-10 11:30:06 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TOKEN" not found; SQL statement:
+SELECT "TOKEN"."ISSUED_AT" AS "ISSUED_AT", "TOKEN"."EXPIRED_AT" AS "EXPIRED_AT", "TOKEN"."REFRESH_TOKEN" AS "REFRESH_TOKEN" FROM "TOKEN" WHERE "TOKEN"."USER" = ? [42102-214]

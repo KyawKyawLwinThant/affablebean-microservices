@@ -25,6 +25,13 @@ public class UserService {
     @Value("${secret.refresh-token.key}")
     private String refreshSecret;
 
+    public Login refreshAccess(String refreshToken){
+        var refreshJwt=Jwt.from(refreshToken,refreshSecret);
+
+        return  Login.of(refreshJwt.getUserId(),accessSecret,
+                refreshSecret);
+    }
+
     public User getUserFromToken(String token){
         return userDao.findById(Jwt.from(token,accessSecret).getUserId())
                 .orElseThrow(UserNotFoundException::new);

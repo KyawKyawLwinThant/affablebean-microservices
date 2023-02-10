@@ -95,6 +95,28 @@ public class AuthController {
                 user.getLastName(),
                 user.getEmail());
     }
+    record RefreshResponse(String token){}
+    @PostMapping("/refresh")
+    public RefreshResponse refresh(@CookieValue("refresh_token")
+                                    String refreshToken){
+
+        return new RefreshResponse(
+                userService.refreshAccess(refreshToken)
+                        .getAccessToken().getToken()
+        );
+
+    }
+    record LogoutResponse(String message){}
+    @PostMapping("/logout")
+    public LogoutResponse logout(@CookieValue("refresh_token")
+                                 String refreshToken,
+                                 HttpServletResponse response){
+        Cookie cookie=new Cookie("refresh_token",null);
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+        return new LogoutResponse("successfully logout!");
+    }
 
 
 
