@@ -23,6 +23,8 @@ public class UserService {
     private UserDao userDao;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private MailService mailService;
 
     @Value("${secret.access-token.key}")
     private String accessSecret;
@@ -34,6 +36,7 @@ public class UserService {
         var user=userDao.findUserByEmail(email)
                 .orElseThrow(UserNotFoundException::new);
         user.addPasswordRecovery(new PasswordRecovery(token));
+        mailService.sendForgotMessage(email,token,originUrl);
         userDao.save(user);
 
     }
