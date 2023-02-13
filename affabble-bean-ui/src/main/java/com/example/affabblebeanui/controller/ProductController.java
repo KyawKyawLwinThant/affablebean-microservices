@@ -5,6 +5,7 @@ import com.example.affabblebeanui.dto.Product;
 import com.example.affabblebeanui.dto.ProductDto;
 import com.example.affabblebeanui.service.ProductClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,19 @@ public class ProductController {
 
     @Autowired
     private ProductClientService productClientService;
+
+   @GetMapping("/checkout")
+    public String checkoutForm(){
+        return "checkout";
+
+   }
+   @PostMapping("/checkout")
+   public String checkoutProcess(@RequestParam("name")String name,
+                                  @RequestParam("email")String email,
+                                  @ModelAttribute("total")double total){
+        productClientService.checkout(name,email,total);
+        return "redirect:/webui/home";
+    }
 
     @GetMapping("/products")
     public String
