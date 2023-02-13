@@ -57,6 +57,17 @@ public class AuthController {
 
         return new LoginResponse(login.getAccessToken().getToken());
     }
+    record ResetRequest(
+            String token,String password
+            ,@JsonProperty("password_confirm") String passwordConfirm
+    ){}
+    record ResetResponse(String message){}
+    @PostMapping("/reset")
+    public ResetResponse reset(@RequestBody ResetRequest request){
+        userService.reset(request.token(),request.password(),
+                request.passwordConfirm());
+        return new ResetResponse("success reset password!");
+    }
 
 
   /*

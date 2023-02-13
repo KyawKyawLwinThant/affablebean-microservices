@@ -4,10 +4,7 @@ import com.example.apisecurity.data.PasswordRecovery;
 import com.example.apisecurity.data.Token;
 import com.example.apisecurity.data.User;
 import com.example.apisecurity.data.UserDao;
-import com.example.apisecurity.exception.InvalidCredentialError;
-import com.example.apisecurity.exception.PasswordNotMatchError;
-import com.example.apisecurity.exception.UnAuthenticatedError;
-import com.example.apisecurity.exception.UserNotFoundException;
+import com.example.apisecurity.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -110,6 +107,20 @@ public class UserService {
                         passwordEncoder.encode(password)
                 )
         );
+
+    }
+
+    public void reset(String token, String password,
+                      String passwordConfirm) {
+        if(!Objects.equals(password,passwordConfirm)){
+            throw new PasswordNotMatchError();
+        }
+        var user=userDao.findUserByPasswordRecoveryToken(token)
+                .orElseThrow(InvalidLinkError::new);
+        user.setPassword(passwordEncoder.encode(password));
+        user.removePasswordRecoveryIf(p -> Objects.equals(p.token()
+                ,token));
+        userDao.save(user);
 
     }
 }
