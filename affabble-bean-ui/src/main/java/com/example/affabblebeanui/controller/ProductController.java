@@ -34,7 +34,8 @@ public class ProductController {
    @PostMapping("/checkout")
    public String checkoutProcess(@RequestParam("name")String name,
                                   @RequestParam("email")String email,
-                                  @ModelAttribute("total")double total){
+                                  @ModelAttribute("updateTotalPrice")double total){
+       System.out.println("Total=============="+ total);
         productClientService.checkout(name,email,total);
         return "redirect:/webui/home";
     }

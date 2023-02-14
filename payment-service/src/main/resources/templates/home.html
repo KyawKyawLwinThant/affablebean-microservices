@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})"
+      lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+  <div class="container my-5 bg-light">
+    <h3>Payment Bank UI Welcome Page</h3>
+    <div th:if="${success}">
+      <p class="alert alert-success" role="alert">
+        Successfully deposit!
+      </p>
+    </div>
+    <p class="lead"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nesciunt numquam quas quidem repellendus. Deleniti dolore, doloremque dolorum eaque eveniet neque nostrum obcaecati possimus quas rerum similique suscipit velit voluptas!</span><span>Aut consequuntur cum, cumque deserunt ea excepturi facere hic ipsum, laudantium libero minima mollitia natus nobis non nostrum nulla odio pariatur reiciendis rem tempore! Asperiores distinctio provident quam quasi voluptas?</span><span>Consequatur dignissimos ducimus enim eos expedita nam nobis odio quaerat reprehenderit vero. Facere harum modi molestiae! Consectetur corporis cum deleniti expedita fuga impedit quaerat recusandae, repellat totam voluptates? Vel, vero!</span><span>Doloremque dolores eaque, incidunt itaque iure labore magni odio placeat, provident saepe sunt tempore ut. Ab consectetur dignissimos error esse eum iure, neque nisi porro ratione recusandae reprehenderit, sapiente velit.</span><span>Ab accusamus adipisci aperiam autem blanditiis consectetur cumque distinctio dolore eligendi enim est excepturi, fuga impedit ipsam minima minus non obcaecati optio quia ratione, repellendus rerum totam unde velit, voluptas.</span></p>
+  </div>
+</main>
+</body>
+</html>

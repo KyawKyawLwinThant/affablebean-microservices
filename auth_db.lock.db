@@ -1,0 +1,6 @@
+#FileLock
+#Tue Feb 14 09:38:58 MMT 2023
+server=192.168.31.111\:49402
+hostName=kyaws-mbp-2
+method=file
+id=1864de599199867fdd402cd20481e6b59c18e7c136d

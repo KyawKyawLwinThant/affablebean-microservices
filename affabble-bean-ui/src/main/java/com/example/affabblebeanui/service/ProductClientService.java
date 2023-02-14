@@ -8,6 +8,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -67,14 +68,18 @@ public class ProductClientService {
                 "william@gmail.com",
                 total
         );
-        ResponseEntity<String> response=template
-                .postForEntity("http://localhost:8060/payment/transfer",request,String.class);
-        if(!response.getStatusCode().is2xxSuccessful()){
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-        }
-        else {
-            System.out.println("Successfully Checkout..............");
+        try{
+            ResponseEntity<String> response=template
+                    .postForEntity("http://localhost:8060/payment/transfer",
+                            request,String.class);
+            if(response.getStatusCode().is2xxSuccessful()){
+                System.out.println("Successfully Check Out!");
+            }
+
+        }catch (HttpClientErrorException e){
+            String msg=String.format("%s and %s is not found in payment account!",
+                    email,name);
+            throw new IllegalArgumentException(msg);
         }
 
     }

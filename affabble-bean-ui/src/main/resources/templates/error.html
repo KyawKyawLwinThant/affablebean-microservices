@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html th:replace="layouts/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+  <div class="container my-5 bg-light">
+     <h3 class="text text-danger" th:text="${message}"></h3>
+     <h3 class="text text-danger" th:text="${statusCode}"></h3>
+  </div>
+</main>
+</body>
+</html>
