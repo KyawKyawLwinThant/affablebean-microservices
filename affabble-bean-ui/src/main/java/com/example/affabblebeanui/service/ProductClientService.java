@@ -55,6 +55,15 @@ public class ProductClientService {
         return this.products;
     }
 
+    record TransPortInfo(String email){}
+    public void findTransPortInfo(String email) {
+        var transPortInfo=new TransPortInfo(email);
+        ResponseEntity<String> response=template.postForEntity("http://localhost:8050/transport/find-transport-info",
+                transPortInfo,String.class);
+        System.out.println(response);
+    }
+    //http://localhost:8050/transport/find-transport-info
+
     record TransferRequest(
             @JsonProperty("from_name") String fromName,
             @JsonProperty("from_email") String fromEmail,

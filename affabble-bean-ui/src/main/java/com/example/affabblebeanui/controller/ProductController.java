@@ -26,6 +26,16 @@ public class ProductController {
     @Autowired
     private ProductClientService productClientService;
 
+    @GetMapping("/find-transport-info")
+    public String findTransPortForm(){
+        return "findTransPortForm";
+    }
+    @PostMapping("/find-transport-info")
+    public String processFindTransPort(@RequestParam("email")String email){
+        productClientService.findTransPortInfo(email);
+        return "redirect:/webui/";
+    }
+
    @GetMapping("/checkout")
     public String checkoutForm(){
         return "checkout";

@@ -15,4 +15,17 @@ public class ProductDto {
     private double price;
     private String categoryName;
     private int quantity;
+
+    public ProductDto(){
+
+    }
+
+    public ProductDto(String name, String description, LocalDateTime lastUpdate, double price, String categoryName, int quantity) {
+        this.name = name;
+        this.description = description;
+        this.lastUpdate = lastUpdate;
+        this.price = price;
+        this.categoryName = categoryName;
+        this.quantity = quantity;
+    }
 }
