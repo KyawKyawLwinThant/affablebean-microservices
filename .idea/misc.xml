@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/affabble-bean-ui/pom.xml" />
         <option value="$PROJECT_DIR$/api-security/pom.xml" />
         <option value="$PROJECT_DIR$/payment-service/pom.xml" />
+        <option value="$PROJECT_DIR$/transportation-service/pom.xml" />
       </list>
     </option>
   </component>

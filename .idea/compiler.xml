@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="transportation-service" />
         <module name="payment-service" />
         <module name="affablebean-backend" />
         <module name="affabble-bean-ui" />
@@ -20,6 +21,7 @@
       <module name="affablebean-backend" options="" />
       <module name="api-security" options="" />
       <module name="payment-service" options="" />
+      <module name="transportation-service" options="" />
     </option>
   </component>
 </project>

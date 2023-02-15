@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: transportation-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/transport
+    username: root
+    password: kyaw
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8050

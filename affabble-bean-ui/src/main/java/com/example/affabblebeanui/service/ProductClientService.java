@@ -1,10 +1,13 @@
 package com.example.affabblebeanui.service;
 
+import com.example.affabblebeanui.ds.CartBean;
+import com.example.affabblebeanui.ds.ProductDto;
 import com.example.affabblebeanui.dto.Product;
 import com.example.affabblebeanui.dto.Products;
 import com.example.affabblebeanui.exception.ProductNotFoundException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,6 +64,16 @@ public class ProductClientService {
     ){
 
     }
+
+    record TransPortInfoRequest(
+            @JsonProperty("customer_name") String customerName,
+            String email,
+            Set<Product> products,
+            @JsonProperty("total_amount")
+            double totalAmount
+    ){
+
+    }
     public void checkout(String name, String email, double total) {
         var request=new TransferRequest(
                 name,
@@ -74,6 +88,16 @@ public class ProductClientService {
                             request,String.class);
             if(response.getStatusCode().is2xxSuccessful()){
                 System.out.println("Successfully Check Out!");
+                var transPortInfo=new TransPortInfoRequest(
+                        name,
+                        email,
+                        cartBean.getCart(),
+                        total
+
+                );
+                template.postForEntity("http://localhost:8050/transport/save-transport-info",
+                        transPortInfo,String.class);
+                cartBean.clearCart();
             }
 
         }catch (HttpClientErrorException e){
@@ -83,4 +107,7 @@ public class ProductClientService {
         }
 
     }
+
+    @Autowired
+    private CartBean cartBean;
 }
