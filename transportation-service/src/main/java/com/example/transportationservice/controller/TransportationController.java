@@ -1,6 +1,7 @@
 package com.example.transportationservice.controller;
 
 import com.example.transportationservice.dao.ProductDao;
+import com.example.transportationservice.ds.TransPortFindRequest;
 import com.example.transportationservice.ds.TransPortInfoRequest;
 import com.example.transportationservice.ds.TransPortInfoResponse;
 import com.example.transportationservice.entity.Product;
@@ -33,13 +34,13 @@ public class TransportationController {
     }
     //public ProductDto(String name, String description, LocalDateTime lastUpdate, double price, String categoryName, int quantity) {
     //email
-    record TransPortFindRequest(String email){}
+
 
     @PostMapping("/find-transport-info")
     public TransPortInfoResponse
     findTransPortInfoResponse(@RequestBody TransPortFindRequest request){
         return transportService
-                .findTransPortInfo(request.email);
+                .findTransPortInfo(request.email(),request.password());
     }
 
 

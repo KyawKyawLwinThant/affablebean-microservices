@@ -69,7 +69,7 @@ public class CustomerController {
                         .postForEntity("http://localhost:8070/security/login"
                         ,login,Token.class);
         String authToken=response.getBody().token();
-        System.out.println(authToken);
+
         HttpHeaders headers=new HttpHeaders();
         headers.add("Authorization"
                 ,"Bearer "+ authToken);

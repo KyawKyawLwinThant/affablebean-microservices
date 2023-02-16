@@ -33,8 +33,9 @@ public class ProductController {
         return "findTransPortForm";
     }
     @PostMapping("/find-transport-info")
-    public String processFindTransPort(@RequestParam("email")String email){
-        this.entity =productClientService.findTransPortInfo(email);
+    public String processFindTransPort(@RequestParam("email")String email,
+                                       @RequestParam("password")String password){
+        this.entity =productClientService.findTransPortInfo(email,password);
         return "redirect:/webui/trans-port-entity/view";
     }
 
