@@ -58,10 +58,9 @@ public class TransportService {
 //public TransPortInfoResponse(String customerName, String email, List<Product> products, double totalAmount) {
    //public ProductDto(String name, String description, LocalDateTime lastUpdate, double price, String categoryName, int quantity) {
     public TransPortInfoResponse findTransPortInfo(String email) {
-         List<ProductDto> products=orderProductDao.findProductsByCustomerEmail(email)
-                 .stream()
-                 .map(p -> new ProductDto(p.getName(),"",LocalDateTime.now(),p.getPrice(),"",p.getQuantity()))
-                 .collect(Collectors.toList());
+         List<ProductDto> products=orderProductDao
+                 .findProductsByCustomerEmail(email);
+
 
          Set<String> name=orderProductDao
                  .findCustomerNameByEmail(email);

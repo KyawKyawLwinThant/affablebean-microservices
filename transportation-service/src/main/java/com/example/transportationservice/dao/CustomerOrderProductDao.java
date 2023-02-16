@@ -4,6 +4,7 @@ import com.example.transportationservice.ds.CustomerOrder;
 import com.example.transportationservice.ds.TransPortInfoResponse;
 import com.example.transportationservice.entity.CustomerOrderProduct;
 import com.example.transportationservice.entity.Product;
+import com.example.transportationservice.entity.ProductDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,10 +21,11 @@ public interface CustomerOrderProductDao extends JpaRepository<CustomerOrderProd
     TransPortInfoResponse findTransPortInfoResponse(@Param("email") String email);
 
     @Query("""
-    select p from Product p inner join p.customerOrderProduct co
+    select new com.example.transportationservice.entity.ProductDto(co.orderId,p.name,p.price,p.quantity) 
+    from Product p inner join p.customerOrderProduct co
     inner join co.customer c where c.email=:email
 """)
-    List<Product> findProductsByCustomerEmail(@Param("email") String email);
+    List<ProductDto> findProductsByCustomerEmail(@Param("email") String email);
 
     @Query("""
     select c.name from Customer c where c.email=:email
@@ -31,7 +33,7 @@ public interface CustomerOrderProductDao extends JpaRepository<CustomerOrderProd
     public Set<String> findCustomerNameByEmail(@Param("email") String email);
 
     @Query("""
-    select new com.example.transportationservice.ds.CustomerOrder(co.totalAmount,co.orderId) 
+    select new com.example.transportationservice.ds.CustomerOrder(co.totalAmount) 
     from CustomerOrderProduct co where co.customer.email = :email
 """)
     public List<CustomerOrder> findTotalAmountByCustomerEmail(@Param("email") String email);

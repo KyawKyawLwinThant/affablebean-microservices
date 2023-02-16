@@ -67,12 +67,6 @@ public class ProductClientService {
             entity.setProducts(response.getBody().getProducts());
             entity.setEmail(response.getBody().getEmail());
             List<CustomerOrder> customerOrders=response.getBody().getCustomerOrders();
-            int i=0;
-            for(CustomerOrder customerOrder:customerOrders){
-                entity.getProducts().get(i)
-                        .setOrderId(customerOrder.getOrderId());
-                i++;
-            }
             entity.setCustomerOrders(response.getBody().getCustomerOrders());
             entity.setCustomerName(response.getBody().getCustomerName());
         }

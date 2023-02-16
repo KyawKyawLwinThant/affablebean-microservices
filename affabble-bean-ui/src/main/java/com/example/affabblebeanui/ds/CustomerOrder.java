@@ -5,15 +5,14 @@ import lombok.Data;
 @Data
 public class CustomerOrder {
     private double totalAmount;
-    private String orderId;
+
 
     public CustomerOrder(){
 
     }
 
 
-    public CustomerOrder(double totalAmount, String orderId) {
+    public CustomerOrder(double totalAmount) {
         this.totalAmount = totalAmount;
-        this.orderId = orderId;
     }
 }
