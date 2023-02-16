@@ -1,7 +1,9 @@
 package com.example.affabblebeanui.service;
 
 import com.example.affabblebeanui.ds.CartBean;
+import com.example.affabblebeanui.ds.CustomerOrder;
 import com.example.affabblebeanui.ds.ProductDto;
+import com.example.affabblebeanui.ds.TransPortInfoEntity;
 import com.example.affabblebeanui.dto.Product;
 import com.example.affabblebeanui.dto.Products;
 import com.example.affabblebeanui.exception.ProductNotFoundException;
@@ -56,11 +58,25 @@ public class ProductClientService {
     }
 
     record TransPortInfo(String email){}
-    public void findTransPortInfo(String email) {
+    public TransPortInfoEntity findTransPortInfo(String email) {
         var transPortInfo=new TransPortInfo(email);
-        ResponseEntity<String> response=template.postForEntity("http://localhost:8050/transport/find-transport-info",
-                transPortInfo,String.class);
-        System.out.println(response);
+        ResponseEntity<TransPortInfoEntity> response=template.postForEntity("http://localhost:8050/transport/find-transport-info",
+                transPortInfo, TransPortInfoEntity.class);
+        TransPortInfoEntity entity=new TransPortInfoEntity();
+        if(response.getStatusCode().is2xxSuccessful()){
+            entity.setProducts(response.getBody().getProducts());
+            entity.setEmail(response.getBody().getEmail());
+            List<CustomerOrder> customerOrders=response.getBody().getCustomerOrders();
+            int i=0;
+            for(CustomerOrder customerOrder:customerOrders){
+                entity.getProducts().get(i)
+                        .setOrderId(customerOrder.getOrderId());
+                i++;
+            }
+            entity.setCustomerOrders(response.getBody().getCustomerOrders());
+            entity.setCustomerName(response.getBody().getCustomerName());
+        }
+        return entity;
     }
     //http://localhost:8050/transport/find-transport-info
 

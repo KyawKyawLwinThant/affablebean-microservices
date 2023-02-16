@@ -1,5 +1,6 @@
 package com.example.transportationservice.dao;
 
+import com.example.transportationservice.ds.CustomerOrder;
 import com.example.transportationservice.ds.TransPortInfoResponse;
 import com.example.transportationservice.entity.CustomerOrderProduct;
 import com.example.transportationservice.entity.Product;
@@ -30,7 +31,8 @@ public interface CustomerOrderProductDao extends JpaRepository<CustomerOrderProd
     public Set<String> findCustomerNameByEmail(@Param("email") String email);
 
     @Query("""
-    select co.totalAmount from CustomerOrderProduct co where co.customer.email = :email
+    select new com.example.transportationservice.ds.CustomerOrder(co.totalAmount,co.orderId) 
+    from CustomerOrderProduct co where co.customer.email = :email
 """)
-    public List<Double> findTotalAmountByCustomerEmail(@Param("email") String email);
+    public List<CustomerOrder> findTotalAmountByCustomerEmail(@Param("email") String email);
 }

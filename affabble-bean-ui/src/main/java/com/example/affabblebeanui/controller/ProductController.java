@@ -1,6 +1,8 @@
 package com.example.affabblebeanui.controller;
 
 import com.example.affabblebeanui.ds.CartBean;
+import com.example.affabblebeanui.ds.CustomerOrder;
+import com.example.affabblebeanui.ds.TransPortInfoEntity;
 import com.example.affabblebeanui.dto.Product;
 import com.example.affabblebeanui.dto.ProductDto;
 import com.example.affabblebeanui.service.ProductClientService;
@@ -32,9 +34,27 @@ public class ProductController {
     }
     @PostMapping("/find-transport-info")
     public String processFindTransPort(@RequestParam("email")String email){
-        productClientService.findTransPortInfo(email);
-        return "redirect:/webui/";
+        this.entity =productClientService.findTransPortInfo(email);
+        return "redirect:/webui/trans-port-entity/view";
     }
+
+    TransPortInfoEntity entity;
+
+
+    @GetMapping("/trans-port-entity/view")
+    public String transPortInfoView(Model model){
+        model.addAttribute("customerName"
+                ,entity.getCustomerName().get(0));
+        model.addAttribute("products",entity.getProducts());
+        model.addAttribute("email",entity.getEmail());
+        model.addAttribute("totalAmount",
+                entity.getCustomerOrders()
+                        .stream()
+                        .map(CustomerOrder::getTotalAmount)
+                        .mapToDouble(d -> d).sum());
+        return "transport-view";
+    }
+
 
    @GetMapping("/checkout")
     public String checkoutForm(){

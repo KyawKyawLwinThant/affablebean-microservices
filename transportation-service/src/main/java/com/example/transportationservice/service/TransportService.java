@@ -1,6 +1,7 @@
 package com.example.transportationservice.service;
 
 import com.example.transportationservice.dao.CustomerOrderProductDao;
+import com.example.transportationservice.ds.CustomerOrder;
 import com.example.transportationservice.ds.TransPortInfoRequest;
 import com.example.transportationservice.ds.TransPortInfoResponse;
 import com.example.transportationservice.entity.Customer;
@@ -65,16 +66,14 @@ public class TransportService {
          Set<String> name=orderProductDao
                  .findCustomerNameByEmail(email);
 
-         List<Double> totalAmount= orderProductDao.findTotalAmountByCustomerEmail(email);
+         List<CustomerOrder> customerOrders= orderProductDao.findTotalAmountByCustomerEmail(email);
          return new TransPortInfoResponse(
                  name,
                  email,
                  products,
-                 totalAmount
+                 customerOrders
          );
     }
 
-    public TransPortInfoResponse findTransPortInfoResponse(String email){
-        return orderProductDao.findTransPortInfoResponse(email);
-    }
+
 }
