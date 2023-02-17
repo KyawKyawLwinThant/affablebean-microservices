@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-//security api - register
-/*
-    register() - api -
- */
+
 @Controller
 @RequestMapping("/payment")
 public class CustomerController {
@@ -66,7 +63,7 @@ public class CustomerController {
         var login=new LoginRequest(email,password);
         ResponseEntity<Token> response=
                 restTemplate
-                        .postForEntity("http://localhost:8070/security/login"
+                        .postForEntity("http://localhost:8080/security/login"
                         ,login,Token.class);
         String authToken=response.getBody().token();
 
@@ -76,7 +73,7 @@ public class CustomerController {
         HttpEntity<String> httpEntity=new HttpEntity<>(headers);
 
         ResponseEntity<String> response1=restTemplate
-                .exchange("http://localhost:8070/security/user",
+                .exchange("http://localhost:8080/security/user",
                 HttpMethod.GET,
                 httpEntity,
                 String.class);

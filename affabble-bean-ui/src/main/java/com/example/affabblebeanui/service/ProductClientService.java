@@ -63,7 +63,7 @@ public class ProductClientService {
                                                  String password) {
         try{
             var transPortInfo=new TransPortInfo(email,password);
-            ResponseEntity<TransPortInfoEntity> response=template.postForEntity("http://localhost:8050/transport/find-transport-info",
+            ResponseEntity<TransPortInfoEntity> response=template.postForEntity("http://localhost:8080/transport/find-transport-info",
                     transPortInfo, TransPortInfoEntity.class);
             TransPortInfoEntity entity=new TransPortInfoEntity();
             if(response.getStatusCode().is2xxSuccessful()){
@@ -111,7 +111,7 @@ public class ProductClientService {
         );
         try{
             ResponseEntity<String> response=template
-                    .postForEntity("http://localhost:8060/payment/transfer",
+                    .postForEntity("http://localhost:8080/payment/transfer",
                             request,String.class);
             if(response.getStatusCode().is2xxSuccessful()){
                 System.out.println("Successfully Check Out!");
@@ -122,7 +122,7 @@ public class ProductClientService {
                         total
 
                 );
-                template.postForEntity("http://localhost:8050/transport/save-transport-info",
+                template.postForEntity("http://localhost:8080/transport/save-transport-info",
                         transPortInfo,String.class);
                 cartBean.clearCart();
             }

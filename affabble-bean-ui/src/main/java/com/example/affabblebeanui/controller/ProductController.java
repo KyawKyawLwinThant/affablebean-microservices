@@ -66,7 +66,6 @@ public class ProductController {
    public String checkoutProcess(@RequestParam("name")String name,
                                   @RequestParam("email")String email,
                                   @ModelAttribute("updateTotalPrice")double total){
-       System.out.println("Total=============="+ total);
         productClientService.checkout(name,email,total);
         return "redirect:/webui/home";
     }
@@ -105,9 +104,6 @@ public class ProductController {
     @PostMapping("/update-item")
     public String processItem(ProductDto productDto, RedirectAttributes attributes){
         itemList=productDto.getItemList();
-        System.out.println("==================================="
-                +itemList);
-
         int counter=0;
 
         Iterator<Product> itr=cartBean.getCart().iterator();

@@ -2,4 +2,8 @@ spring:
   application:
     name: affable-bean-ui
 server:
-  port: 8090
+  port: 0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8083/eureka

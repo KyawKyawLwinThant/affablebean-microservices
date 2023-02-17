@@ -1,6 +1,6 @@
 
 server:
-  port: 8070
+  port: 0
   error:
     include-message: always
 spring:
@@ -26,7 +26,11 @@ secret:
 application:
   frontend:
     default:
-      url: http://localhost:8070
+      url: http://localhost:8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8083/eureka
 
 
 

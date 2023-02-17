@@ -9,9 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="transportation-service" />
         <module name="payment-service" />
-        <module name="affablebean-backend" />
         <module name="affabble-bean-ui" />
         <module name="api-security" />
+        <module name="gateway-service" />
+        <module name="affablebean-backend" />
+        <module name="eureka-server" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +22,8 @@
       <module name="affabble-bean-ui" options="" />
       <module name="affablebean-backend" options="" />
       <module name="api-security" options="" />
+      <module name="eureka-server" options="" />
+      <module name="gateway-service" options="" />
       <module name="payment-service" options="" />
       <module name="transportation-service" options="" />
     </option>

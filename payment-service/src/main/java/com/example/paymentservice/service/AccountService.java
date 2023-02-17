@@ -70,7 +70,7 @@ public class AccountService {
 
     public void register(Customer customer) {
         try{
-            restTemplate.postForEntity("http://localhost:8070/security/register"
+            restTemplate.postForEntity("http://localhost:8080/security/register"
                     ,customer,String.class);
         }catch (Exception e){
             System.out.println(e);

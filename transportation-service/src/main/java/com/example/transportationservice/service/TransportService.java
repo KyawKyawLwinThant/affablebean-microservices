@@ -70,7 +70,7 @@ public class TransportService {
         try{
             var request=new TransPortFindRequest(email,password);
             ResponseEntity<Token> response =template
-                    .postForEntity("http://localhost:8070/security/login",
+                    .postForEntity("http://localhost:8080/security/login",
                             request,Token.class);
             String token;
             if(response.getStatusCode().is2xxSuccessful()){
@@ -82,7 +82,7 @@ public class TransportService {
                 HttpEntity<String> httpEntity=new HttpEntity<>(headers);
 
                 ResponseEntity<String> response1=template
-                        .exchange("http://localhost:8070/security/user",
+                        .exchange("http://localhost:8080/security/user",
                                 HttpMethod.GET,
                                 httpEntity,
                                 String.class);

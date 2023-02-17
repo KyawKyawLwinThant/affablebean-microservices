@@ -14,6 +14,15 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <modules>
+        <module>eureka-server</module>
+        <module>gateway-service</module>
+        <module>affabble-bean-ui</module>
+        <module>affablebean-backend</module>
+        <module>api-security</module>
+        <module>payment-service</module>
+        <module>transportation-service</module>
+    </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>

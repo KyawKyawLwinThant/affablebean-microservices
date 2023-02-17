@@ -56,7 +56,7 @@ public class AccountController {
     @PostMapping("/transfer")
     public TransferResponse transfer(@RequestBody TransferRequest request){
 
-        System.out.println("total amout:============="+ request.amount());
+
         accountService.transfer(
                 request.fromName(),
                 request.fromEmail(),
