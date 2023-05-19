@@ -31,6 +31,7 @@ public class User {
     @Getter
     @Setter
     private String password;
+
     @MappedCollection private final Set<Token> tokens=
             new HashSet<>();
     @MappedCollection private final Set<PasswordRecovery> passwordRecoveries=
